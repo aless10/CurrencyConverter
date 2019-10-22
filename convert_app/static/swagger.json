@@ -1,0 +1,73 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "iGenius challenge",
+    "version": "0.0.1.dev",
+    "title": "Converter App Api",
+    "contact": {
+      "email": "alessio.izzo86@gmail.com"
+    }
+  },
+  "paths": {
+    "/api/v1/status": {
+      "get": {
+        "summary": "Status",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/convert": {
+      "get": {
+        "summary": "Convert the given amount base on source and destination currency and the reference date",
+        "parameters": [
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "description": "Amount to convert",
+            "type": "number"
+          },
+          {
+            "name": "src_currency",
+            "in": "query",
+            "required": true,
+            "description": "Source currency of the amount to convert",
+            "type": "string"
+          },
+          {
+            "name": "dest_currency",
+            "in": "query",
+            "required": true,
+            "description": "Destination currency of the amount to convert",
+            "type": "string"
+          },
+          {
+            "name": "reference_date",
+            "in": "query",
+            "required": true,
+            "description": "Date of the actual exchange rate in format YYYY-MM-DD",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad request."
+          },
+          "404": {
+            "description": "Failed. One of src_currency, dest_currency or reference date not found."
+          },
+          "500": {
+            "description": "Failed. An internal error occurred while processing the request."
+          }
+        }
+      }
+    }
+  }
+}
+
