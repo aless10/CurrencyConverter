@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "iGenius challenge",
-    "version": "0.2.0.dev",
+    "version": "0.2.0",
     "title": "Converter App Api",
     "contact": {
       "email": "alessio.izzo86@gmail.com"
