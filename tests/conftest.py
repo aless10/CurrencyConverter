@@ -18,15 +18,17 @@ class TestConfiguration:
     REDIS_HOST = '127.0.0.1'
     REDIS_PORT = 6379
     DATABASE_CONNECTION_URI = "mongodb://"
+    SOURCE_URL = ""
 
 
 @pytest.fixture
 def app(mock_config):
     """Create and configure a new app instance for each test."""
     with mock.patch("convert_app.app_factory.setup_logging"):
-        test_app = create_app(TestConfiguration)
-        with test_app.app_context():
-            yield test_app
+        with mock.patch("convert_app.app_factory.init_db"):
+            test_app = create_app(TestConfiguration)
+            with test_app.app_context():
+                yield test_app
 
 
 @pytest.fixture

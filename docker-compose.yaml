@@ -12,8 +12,7 @@ services:
       - ./convert_app/conf/redis.conf:/usr/local/etc/redis/redis.conf
 
   mongo_db:
-    build:
-      image: bitnami/mongodb:latest
+    image: bitnami/mongodb:latest
     container_name: mongo_db
     ports:
       - 27017:27017

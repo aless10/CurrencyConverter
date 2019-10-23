@@ -4,8 +4,6 @@ FROM alpine:latest
 RUN apk add --no-cache --update python3-dev py-pip gcc build-base --update bash
 
 COPY ./convert_app /app/convert_app
-COPY ./categories.json /app/categories.json
-COPY ./psychographics.json /app/psychographics.json
 COPY ./requirements.txt /app/requirements.txt
 COPY ./.bumpversion.cfg /app/.bumpversion.cfg
 COPY ./docker/run_convert_app.sh /app/run_convert_app.sh

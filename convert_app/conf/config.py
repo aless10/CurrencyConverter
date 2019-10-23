@@ -17,3 +17,4 @@ class ConvertAppConfiguration:
     REDIS_HOST = config_parser.get("cache", "redis_host")
     REDIS_PORT = config_parser.get("cache", "redis_port")
     DATABASE_CONNECTION_URI = config_parser.get("database", "db_connection")
+    SOURCE_URL = config_parser.get("data", "source_url")
