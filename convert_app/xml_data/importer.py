@@ -3,6 +3,7 @@ from lxml.etree import Element
 import requests
 from requests import RequestException
 
+from convert_app.db.mongo_db.model import Document
 from convert_app.utils.decorators import retry
 
 
@@ -36,5 +37,7 @@ def get_xml_from_string(xml_str: str) -> Element:
 def serialize_from_xml_element(xml_element: Element) -> list:
     r = []
     for item in xml_element:
-        r.append({"time": item.get("time"), "values": [dict(sub_item.items()) for sub_item in item]})
+        for sub_item in item:
+            document = Document(time=item.get("time"), **dict(sub_item.items()))
+            r.append(document.to_dict())
     return r

@@ -1,5 +1,7 @@
 from argparse import Namespace
 from unittest import mock
+
+from bson import Decimal128
 from lxml import etree
 
 from convert_app.xml_data.importer import get_data_from_url, get_xml_from_string, serialize_from_xml_element
@@ -32,12 +34,8 @@ def test_serialize_from_xml_element():
                          '</Cube>')
     d = serialize_from_xml_element(e)
     assert d == [
-        {"time": "2019-10-22", "values": [
-            {"currency": "USD", "rate": "1.113"},
-            {"currency": "JPY", "rate": "120.87"}
-        ]},
-        {"time": "2019-10-23", "values": [
-            {"currency": "BGN", "rate": "1.9558"},
-            {"currency": "CZK", "rate": "25.57"}
-        ]}
+        {"time": "2019-10-22", "currency": "USD", "rate": Decimal128("1.113")},
+        {"time": "2019-10-22", "currency": "JPY", "rate": Decimal128("120.87")},
+        {"time": "2019-10-23", "currency": "BGN", "rate": Decimal128("1.9558")},
+        {"time": "2019-10-23", "currency": "CZK", "rate": Decimal128("25.57")},
     ]
