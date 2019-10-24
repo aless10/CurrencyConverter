@@ -1,6 +1,10 @@
 import logging
 from decimal import Decimal
+from typing import Optional
 
+from flask import current_app
+
+from convert_app.db.exceptions import RateNotFound
 from convert_app.db.mongo_db.session import context_db
 from convert_app.xml_data.importer import XMLElement
 
@@ -32,8 +36,14 @@ def populate_db_from_object(config_obj):
         return i
 
 
-def get_rate_by_date_currency(ref_date: str, currency: str) -> Decimal:
+def get_rate_by_date_currency(ref_date: str, currency: str) -> Optional[Decimal]:
     if currency == "EUR":
         return Decimal(1)
     else:
-        return Decimal(3)
+        with context_db(current_app.config[DATABASE_CONNECTION_URI]) as db:
+            rate = db.get_collection(COLLECTION_NAME).find_one({"currency": currency, "time": ref_date},
+                                                               {"rate": 1, "_id": 0})
+            if rate is not None:
+                return Decimal(rate.get("rate"))
+            else:
+                raise RateNotFound(f"Rate for currency {currency} and reference_date {ref_date} not found.")

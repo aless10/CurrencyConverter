@@ -2,8 +2,9 @@ import logging
 
 from flask import request, Response
 from marshmallow import ValidationError
-from werkzeug.exceptions import BadRequest, InternalServerError
+from werkzeug.exceptions import BadRequest, InternalServerError, NotFound
 
+from convert_app.db.exceptions import RateNotFound
 from convert_app.schema.schema import RequestSchema, ResponseSchema
 
 log = logging.getLogger(__name__)
@@ -31,6 +32,9 @@ class TaskExecutor:
                 self._result = request_model.convert()
                 log.info("Task result: %s", self._result)
                 self._status_code = 200
+            except RateNotFound:
+                log.info("Rate value not found")
+                self._status_code = NotFound.code
             except Exception:
                 log.exception("Exception occurred in task")
                 self._status_code = InternalServerError.code

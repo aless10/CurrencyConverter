@@ -5,8 +5,8 @@ import flask
 import pytest
 
 from convert_app.app_factory import create_app
-
-pytest_plugins = ['tests.fixtures_test_db']
+from convert_app.db.init_db import init_db
+from convert_app.xml_data.importer import XMLElement
 
 LOCAL_SERVER_NAME = '127.0.0.1:5000'
 
@@ -18,8 +18,18 @@ class TestConfiguration:
     USE_CACHE = False
     REDIS_HOST = '127.0.0.1'
     REDIS_PORT = 6379
-    DATABASE_CONNECTION_URI = "mongodb://"
+    DATABASE_CONNECTION_URI = "mongodb://127.0.0.1"
     SOURCE_URL = ""
+
+
+@pytest.fixture
+def init_test_db():
+    with mock.patch("convert_app.db.mongo_db.repo.XMLElement.from_url") as source:
+        source.return_value = XMLElement(data=[
+            {"time": "1970-01-01", "currency": "USD", "rate": "1.113"},
+            {"time": "1970-01-01", "currency": "JPY", "rate": "120.87"},
+        ])
+        init_db(TestConfiguration)
 
 
 @pytest.fixture

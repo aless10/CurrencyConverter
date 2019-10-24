@@ -6,11 +6,11 @@ from convert_app.tasks.converter import get_rate, convert_to_euro, convert_from_
 
 
 def test_get_rate_euro():
-    assert get_rate("2019-10-24", "EUR") == Decimal(1)
+    assert get_rate("1970-01-01", "EUR") == Decimal(1)
 
 
-def test_get_rate():
-    assert get_rate("2019-10-24", "USD") == Decimal(3)
+def test_get_rate(app, init_test_db):
+    assert get_rate("1970-01-01", "USD") == Decimal("1.113")
 
 
 def test_convert_to_euro():
