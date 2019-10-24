@@ -19,14 +19,14 @@ def populate_db_from_object(config_obj):
     with context_db(config_obj.DATABASE_CONNECTION_URI) as db:
         coll = getattr(db, COLLECTION_NAME)
         i = 0
-        if coll.count() == 0:
+        if coll.count_documents({}) == 0:
             log.info("initialize collection %s", COLLECTION_NAME)
             coll.insert_many(data.items())
-            i = coll.count()
+            i = coll.count_documents({})
         else:
             log.info("Updating collection %s with new data", COLLECTION_NAME)
             for element in data.items():
-                if not coll.find({"time": element['time']}).count():
+                if coll.find_one({"time": element['time']}) is None:
                     log.info("Insert element %s into collection", element)
                     coll.insert(element)
                     i += 1
