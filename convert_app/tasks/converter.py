@@ -2,13 +2,13 @@ import logging
 from decimal import Decimal
 from typing import Optional
 
+from convert_app.db.mongo_db.repo import get_rate_by_date_currency
+
 log = logging.getLogger(__name__)
 
 
 def get_rate(reference_date: str, currency: str) -> Optional[Decimal]:
-    if currency == "EUR":
-        return Decimal(1)
-    return Decimal(0.3)
+    return get_rate_by_date_currency(reference_date, currency)
 
 
 def convert_to_euro(amount: Decimal, rate: Decimal) -> Decimal:

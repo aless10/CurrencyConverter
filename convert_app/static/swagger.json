@@ -67,6 +67,19 @@
           }
         }
       }
+    },
+    "/api/v1/update-db": {
+      "get": {
+        "summary": "Update the database with the latest data (currency rates at date).",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Failed. An internal error occurred while processing the request."
+          }
+        }
+      }
     }
   }
 }

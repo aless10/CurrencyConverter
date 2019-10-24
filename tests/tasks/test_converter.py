@@ -10,7 +10,7 @@ def test_get_rate_euro():
 
 
 def test_get_rate():
-    assert get_rate("2019-10-24", "USD") == Decimal(0.3)
+    assert get_rate("2019-10-24", "USD") == Decimal(3)
 
 
 def test_convert_to_euro():

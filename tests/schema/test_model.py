@@ -10,5 +10,5 @@ def test_convert_method():
                                  reference_date="2019-10-28")
     result = request_model.convert()
     assert isinstance(result, dict)
-    assert pytest.approx(result["amount"], rel=Decimal(0.1)) == Decimal(3.0)
+    assert pytest.approx(result["amount"], rel=Decimal(0.1)) == Decimal(30)
     assert result["currency"] == "EUR"

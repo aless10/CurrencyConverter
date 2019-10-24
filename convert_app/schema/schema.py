@@ -48,3 +48,13 @@ class ResponseSchema(Schema):
     @post_dump
     def to_json(self, data, **kwargs):  # pylint: disable=unused-argument
         return json.dumps(data)
+
+
+class UpdateDbResponseSchema(Schema):
+    total_inserted = fields.Integer(description="Total documents inserted in db", default=None)
+    date = fields.Str(default=None)
+    error_message = fields.Str()
+
+    @post_dump
+    def to_json(self, data, **kwargs):  # pylint: disable=unused-argument
+        return json.dumps(data)

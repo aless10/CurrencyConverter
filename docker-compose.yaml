@@ -41,7 +41,7 @@ services:
       - ./logs:/app/logs
       - ./.bumpversion.cfg:/app/.bumpversion.cfg
     ports:
-      - 5000:5000
+      - 5001:5000
     depends_on:
       - redis
       - mongo_db
