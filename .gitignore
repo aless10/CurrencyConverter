@@ -34,3 +34,7 @@ htmlcov/
 # Sqlite
 *.db
 *.sqlite[3]
+
+
+# Mongodb
+docker/mongo_db_storage/*
