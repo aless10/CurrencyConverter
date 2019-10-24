@@ -12,7 +12,7 @@ packages = find_packages(include=['convert_app', 'convert_app.*'])
 
 setup(
     name='convert_app',
-    version='0.3.0',
+    version='0.4.0.dev',
     author='Alessio Izzo',
     author_email='alessio.izzo86@gmail.com',
     description='An online currency converter',
