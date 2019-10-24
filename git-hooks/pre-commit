@@ -17,16 +17,3 @@ pylint ${SRCS}
 if [ $? != 0 ]; then
 	echo "Code fails pylint check. Please check the code in order to improve the quality."
 fi
-
-
-echo "Running tests..."
-pytest --cov=convert_app tests/
-code=$?
-
-if [ "$code" -eq "0" ]; then
-    echo "All tests passed. Committing..."
-
-  else
-      echo "Please (re)check tests! :("
-      exit 1
-  fi;
