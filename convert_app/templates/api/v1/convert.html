@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="get">
+    <ul>
+        <li><label for="amount">Amount</label>
+            <input name="amount" id="amount" required></li>
+        <li><label for="src_currency">Source Currency</label>
+            <input name="src_currency" id="src_currency" required></li>
+        <li><label for="dest_currency">Destination Currency</label>
+            <input name="dest_currency" id="dest_currency" required></li>
+        <li><label for="reference_date">Reference date</label>
+            <input name="reference_date" id="reference_date" required></li>
+    </ul>
+    <input type="submit" class="btn btn-info" value="Convert!">
+
+</form>
+{% endblock %}

@@ -20,6 +20,15 @@ The response is a JSON object like this:
 The xml file with the last 90 days exchange rates is located this link: 
 - https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml
 
+## Api
+
+There are three endpoint that responds:
+
+    /api/status
+    /api/convert
+    /api/update-db
+    
+
 
 ## How to run the application
 

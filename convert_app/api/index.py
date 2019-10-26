@@ -1,11 +1,11 @@
-from flask import url_for, Blueprint, redirect
+from flask import Blueprint, render_template
 from flask.views import MethodView
 
 
 class IndexView(MethodView):
 
     def get(self):
-        return redirect(url_for("swagger_ui.show"))
+        return render_template("index.html")
 
 
 index = Blueprint('index', __name__)

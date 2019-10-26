@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h2>iGenius Currency Converter</h2>
+
+    The application is an online currency converter, which provides a Web API endpoint called ​"c​onvert".
+    These are the input parameters:
+    -​ amount: the amount to convert (e.g. 12.35)
+    - src​_currency: ISO currency code for the source currency to convert (e.g. EUR,
+    USD, GBP)
+    - des​ t_currency: ISO currency code for the destination currency to convert (e.g. EUR,
+    USD, GBP)
+    - re​ference_date: reference date for the exchange rate, in YYYY-MM-DD format
+    The application converts the pr​ovided ​amount from​ ​src_currency to ​​dest_currency, given the exchange rate at
+    the ​​reference_date.
+    The response is a JSON object like this:
+
+    {
+    "amount": 20.23,
+    "currency": "EUR"
+    }
+
+    The xml file with the last 90 days exchange rates is located this link:
+    - <a href="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml">https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml</a>
+
+    <h3>Api</h3>
+
+    There are three endpoint that responds:
+    <ul>
+        <li><a href="{{ url_for('views_v1.get_status') }}">/api/status</a></li>
+        <li><a href="{{ url_for('views_v1.convert') }}">/api/convert</a></li>
+        <li><a href="{{ url_for('views_v1.update_db') }}">/api/update-db</a></li>
+
+    </ul>
+
+
+    If you want to try the swaggerUI page to call the api, go <a href="{{ url_for('swagger_ui.show') }}">here!</a>
+
+</div>
+
+{% endblock %}

@@ -14,9 +14,11 @@ from convert_app.db.init_db import init_db
 
 log = logging.getLogger(__name__)
 
+blueprints = (index, swaggerui_blueprint, blueprint.v1, blueprint.views_v1)
 
-def register_blueprint(flask_app, blueprints=()):
-    for flask_blueprint in blueprints:
+
+def register_blueprint(flask_app, _blueprints=()):
+    for flask_blueprint in _blueprints:
         flask_app.register_blueprint(flask_blueprint)
 
 
@@ -60,7 +62,7 @@ def create_app(config_obj):
     app = Flask('convert_app')
     app.config.from_object(config_obj)
     register_request_callbacks(app)
-    register_blueprint(app, blueprints=(index, swaggerui_blueprint, blueprint.v1,))
+    register_blueprint(app, _blueprints=blueprints)
     app.url_map.strict_slashes = False
     setup_logging(config_obj)
     setup_redis_connection(app)

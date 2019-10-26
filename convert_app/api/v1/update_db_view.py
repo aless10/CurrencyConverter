@@ -5,6 +5,7 @@ from flask import current_app, Response
 from flask.views import MethodView
 from werkzeug.exceptions import InternalServerError
 
+from convert_app.api.v1.views_template import TemplateView
 from convert_app.db.mongo_db.repo import populate_db_from_object
 from convert_app.schema.schema import UpdateDbResponseSchema
 
@@ -24,3 +25,7 @@ class UpdateDbView(MethodView):
         result.update({"date": execution_date})
         response_schema_result = UpdateDbResponseSchema().dump(result)
         return Response(response_schema_result, status=status, mimetype='application/json')
+
+
+class UpdateDbTemplateView(TemplateView):
+    template_name = "api/v1/update_db.html"

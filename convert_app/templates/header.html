@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="https://igenius.ai/">
+        <svg id="igenius-logo" xmlns="http://www.w3.org/2000/svg" width="108" height="24"
+             viewBox="0 0 553.1 123.9">
+            <g>
+                <path fill="currentColor"
+                      d="M2,14.1C2,7.4,7.2,2,14.4,2c6.5,0,11.7,5.4,11.7,12.1c0,7-5.2,12.1-11.7,12.1C7.2,26.1,2,21,2,14.1z"></path>
+                <rect fill="currentColor" x="4.8" y="41" class="st0" width="18.6" height="76.2"></rect>
+                <path fill="currentColor"
+                      d="M351.2,14.1c0-6.7,5.2-12.1,12.4-12.1c6.5,0,11.7,5.4,11.7,12.1c0,7-5.2,12.1-11.7,12.1 C356.4,26.1,351.2,21,351.2,14.1z"></path>
+                <rect fill="currentColor" x="353.9" y="41" class="st0" width="18.6" height="76.2"></rect>
+                <path fill="currentColor"
+                      d="M99,23.7c-24,0-39,20.6-39,39.2c0,22.2,15.6,39.8,39.5,39.8c17.3,0,26.2-4.3,27.1-5.1V63h20v46.8 c-7,4.3-22.4,11.6-46.7,12.1c-37.8,1-60.5-25.4-60.5-59.2c0-29.4,22.4-58.2,60-58.2c17.6,0,33.3,5.4,45.1,17.1l-15.9,13.3 C120.9,26.4,109.8,23.7,99,23.7z"></path>
+                <path fill="currentColor"
+                      d="M162.7,79.1c0-24,16.2-40.5,39.2-40.5c23.2,0,39.7,16.5,39.7,40.5c0,2.4-0.5,8.1-0.8,8.4h-58.6 c0.9,9.4,9.7,15.7,20.2,15.7c8.9,0,16.5-3.6,19.7-10.3l17.3,5.1c-6.2,13.3-19.7,21.6-36.5,21.6C179.2,119.6,162.5,103.7,162.7,79.1 z M222.5,72.6C221.7,62,212.7,55,202,55c-10.8,0-19.4,7-20.3,17.6H222.5z"></path>
+                <path fill="currentColor"
+                      d="M329.7,81.5V117h-18.6V74.8c0-8.3-0.9-13.7-4.1-17c-2.2-2.1-5.7-3.8-10-3.8c-13.6,0-20.6,13-20.6,27.6v35.5 h-18.7V41h18.7v9.5c5.6-7.8,14.3-12.4,26.3-12.4c9,0,15.9,3.3,19.8,7.6C330,53.9,329.7,66.4,329.7,81.5z"></path>
+                <path fill="currentColor"
+                      d="M468.8,40.7v76.2h-18.6v-9.4c-5.6,7.8-14.4,12.4-26.5,12.4c-9,0-15.7-3.3-19.7-7.6c-7.6-8.1-7.3-20.6-7.3-35.7 V40.9h18.7v42.4c0,8.3,0.8,13.6,4.1,17c2.2,2.1,5.7,3.8,9.8,3.8c13.7,0,20.8-13,20.8-27.6V40.7H468.8z"></path>
+                <path fill="currentColor"
+                      d="M484.9,101.5l15.2-9.1c2.7,6.7,11,10.5,18.4,10.5c7.6,0,13.1-2.6,13.1-6.8c0-5.7-4-6.8-16.1-9.6 c-11.8-2.7-17.6-5.6-21.6-9.2c-5.3-4.8-6.6-10.1-6.6-15.2c0-13.7,13.9-23.5,31.3-23.5c14.4,0,25.5,5.4,31.3,17.8l-15.2,7.9 c-2.3-6-8.5-9.5-16.2-9.5c-6.9,0-12.3,2.4-12.3,6.9c0,4.8,3.8,7.1,18.1,10.2c19.6,4.3,27.3,11.5,26.6,25.2 c-0.7,13.2-12.6,22.5-31.7,22.5C501.3,119.6,489.2,110.4,484.9,101.5z"></path>
+            </g>
+        </svg>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Api
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ url_for('swagger_ui.show') }}">SwaggerUI</a>
+                    <a class="dropdown-item" href="{{ url_for('views_v1.get_status') }}">App status</a>
+                    <a class="dropdown-item" href="{{ url_for('views_v1.convert') }}">Converter</a>
+                    <a class="dropdown-item" href="{{ url_for('views_v1.update_db') }}">Update Db</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('static', filename='swagger.json') }}">swagger.json</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

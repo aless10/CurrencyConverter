@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="get" action="{{ url_for('api_v1.get_status') }}">
+    <input type="submit" class="btn btn-info" value="Get Status!">
+  </form>
+{% endblock %}
