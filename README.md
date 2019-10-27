@@ -22,11 +22,11 @@ The xml file with the last 90 days exchange rates is located this link:
 
 ## Api
 
-There are three endpoint that responds:
+There are three endpoint:
 
-    /api/status
-    /api/convert
-    /api/update-db
+    /api/status: it gives back the status of the application
+    /api/convert: it performs the amount converstion
+    /api/update-db: it updates the database with the latest data available
     
 
 ## How to run the application
@@ -36,7 +36,7 @@ There are three endpoint that responds:
 To run the application, just run the docker-compose:
 
 ```bash
-$ docker-compose build
+$ docker-compose up --build
 ```
 
 We have two images:
@@ -44,8 +44,9 @@ We have two images:
     - redis: we use the redis server as a cache
     - mongo_db: the database where the exchange rates are stored
     - convert_app: the application
-    - webserver: nginx webserver for the application
-    
+
+The redis and mongo_db images are necessary in order to run the convert_app application.
+
 You can run the application within the container ``convert_app`` by running:
 
 ```bash
@@ -54,7 +55,12 @@ $ python3 /app/convert_app/app.py
 
 This should run the application.
 
+Note: at the beginning, the application should have run with gunicorn. It gave some issues regarding the timeout which it is not solved yet.
+This is a big TODO that can be implemented in the future.
+
 ### Without docker
+
+Note: This application uses redis-server and mongo_db. Please install them on your device or use the images provided in docker-compose.
 
 #### Set-up virtualenv
 

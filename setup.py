@@ -6,7 +6,6 @@ from setuptools import setup, find_packages
 from pkg_resources import parse_requirements
 
 req_file = os.path.join(os.path.dirname(__file__), "requirements.txt")
-print(req_file)
 
 with open(req_file, 'r') as inst_reqs:
     install_requires = [str(req) for req in parse_requirements(inst_reqs)]

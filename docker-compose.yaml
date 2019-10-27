@@ -19,22 +19,6 @@ services:
     volumes:
       - ./docker/mongo_db_storage:/bitnami
 
-  webserver:
-    build:
-      context: .
-      dockerfile: ./docker/nginx/Dockerfile_nginx
-    container_name: webserver
-    volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/sites-available:/etc/nginx/conf.d/sites-available
-      - ./convert_app/static:/var/www-data/static;
-      - ./convert_app/templates:/var/www-data/templates;
-    restart: unless-stopped
-    tty: true
-    ports:
-      - 80:80
-
-
   convert_app:
     container_name: convert_app
     build:
@@ -42,14 +26,15 @@ services:
       dockerfile: ./docker/Dockerfile
     environment:
       - CONVERT_APP_CONFIG=/app/convert_app/conf/dev.ini
+      - PYTHONPATH=/app
       - ENV=development
       - LOG_PATH=/app/logs
       - LOG_LEVEL=DEBUG
       - LOG_CONF=/app/convert_app/conf/log_config/log_config.ini
-      - REDIS_HOST_ADDRESS=127.0.0.1
+      - REDIS_HOST_ADDRESS=redis
       - REDIS_PORT_BIND=6379
       - USE_REDIS_CACHE=true
-      - DATABASE_CONNECTION=mongodb://127.0.0.1:27017/
+      - DATABASE_CONNECTION=mongodb://mongo_db:27017/
       - DATA_SOURCE_URL=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml
     tty: true
     stdin_open: true
@@ -59,8 +44,7 @@ services:
       - ./logs:/app/logs
       - ./.bumpversion.cfg:/app/.bumpversion.cfg
     ports:
-      - 5001:5001
+      - 5000:5000
     depends_on:
       - redis
       - mongo_db
-      - webserver
