@@ -27,9 +27,9 @@ def register_request_callbacks(flask_app):
         g.start = datetime.datetime.now()
         g.x_request_id = request.headers.get('X-Request-ID', uuid.uuid4())
         flask_app.logger.info(
-            "Received a new request x_request_id[%s] body[%s] method[%s] endpoint[%s]",
+            "Received a new request x_request_id[%s] args[%s] method[%s] endpoint[%s]",
             g.x_request_id,
-            request.json,
+            request.args,
             request.method,
             request.path
         )
@@ -79,5 +79,10 @@ def run_app(app):
                   "CONVERT_APP_CONFIG: path to the config file;\n"
                   "LOG_PATH: path to log folder;\n"
                   "LOG_LEVEL: log level for the application;\n"
-                  "LOG_CONF: path to log config file")
+                  "LOG_CONF: path to log config file\n"
+                  "REDIS_HOST_ADDRESS=host of the redis server (e.g 127.0.0.1)\n"
+                  "REDIS_PORT_BIND=6379\n"
+                  "USE_REDIS_CACHE=true if you want to use redis as cache else false\n"
+                  "DATABASE_CONNECTION=mongodb connection string (e.g. mongodb://127.0.0.1:27017/)\n"
+                  "DATA_SOURCE_URL=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml")
         raise

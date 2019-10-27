@@ -1,42 +1,84 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div>
-    <h2>iGenius Currency Converter</h2>
-
-    The application is an online currency converter, which provides a Web API endpoint called ​"c​onvert".
-    These are the input parameters:
-    -​ amount: the amount to convert (e.g. 12.35)
-    - src​_currency: ISO currency code for the source currency to convert (e.g. EUR,
-    USD, GBP)
-    - des​ t_currency: ISO currency code for the destination currency to convert (e.g. EUR,
-    USD, GBP)
-    - re​ference_date: reference date for the exchange rate, in YYYY-MM-DD format
-    The application converts the pr​ovided ​amount from​ ​src_currency to ​​dest_currency, given the exchange rate at
-    the ​​reference_date.
-    The response is a JSON object like this:
-
-    {
-    "amount": 20.23,
-    "currency": "EUR"
+{% block extra_css %}
+<style>
+    .fifty-img {
+        width: 50%;
+    }
+    .full-width {
+        width: 100%;
+    }
+    .center-item {
+        align-self: center;
     }
 
-    The xml file with the last 90 days exchange rates is located this link:
-    - <a href="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml">https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml</a>
-
-    <h3>Api</h3>
-
-    There are three endpoint that responds:
-    <ul>
-        <li><a href="{{ url_for('views_v1.get_status') }}">/api/status</a></li>
-        <li><a href="{{ url_for('views_v1.convert') }}">/api/convert</a></li>
-        <li><a href="{{ url_for('views_v1.update_db') }}">/api/update-db</a></li>
-
-    </ul>
+</style>
+{% endblock %}
 
 
-    If you want to try the swaggerUI page to call the api, go <a href="{{ url_for('swagger_ui.show') }}">here!</a>
+{% block content %}
 
+<h2>Currency Converter</h2>
+<p>The application is an online currency converter, which provides a Web API endpoint called ​"c​onvert".</p>
+<p>These are the input parameters:</p>
+<ul>
+    <li><strong>amount</strong>: the amount to convert (e.g. 12.35)</li>
+    <li><strong>src​_currency</strong>: ISO currency code for the source currency to convert (e.g. EUR,
+        USD, GBP)
+    </li>
+    <li><strong>des​t_currency</strong>: ISO currency code for the destination currency to convert (e.g. EUR,
+        USD, GBP)
+    </li>
+    <li><strong>re​ference_date</strong>: reference date for the exchange rate, in YYYY-MM-DD format.</li>
+</ul>
+<p>The application converts the pr​ovided ​amount from​ ​src_currency to ​​dest_currency, given the exchange rate at
+    the ​​reference_date.</p>
+<p>The response is a JSON object like this:<br>
+    <code class="javascript">{
+        "amount": 20.23,
+        "currency": "EUR"}
+    </code>
+</p>
+
+<p>The xml file with the last 90 days exchange rates is located this link:
+    <a href="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml">https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml</a>
+</p>
+<h3>Api</h3>
+<div class="container">
+    <div class="row">
+        <div class="card col-sm">
+            <img class="card-img-top fifty-img center-item" src="{{ url_for('static', filename='images/status.png') }}"
+                 alt="get status logo">
+            <div class="card-body">
+                <p class="card-text">Do you want to know if the application is alive? You're one click away from awareness...</p>
+                <a href="{{ url_for('views_v1.get_status') }}" class="btn btn-primary full-width">Go to check the status!</a>
+            </div>
+        </div>
+        <div class="card col-sm">
+            <img class="card-img-top fifty-img center-item"
+                 src="{{ url_for('static', filename='images/currency_converter.jpeg') }}" alt="converter logo">
+            <div class="card-body">
+                <p class="card-text">Convert your amount from the source currency to the destination one. Gotta convert'em all!</p>
+                <a href="{{ url_for('views_v1.convert') }}" class="btn btn-primary full-width">Go to convert!</a>
+            </div>
+        </div>
+        <div class="card col-sm">
+            <img class="card-img-top fifty-img center-item"
+                 src="{{ url_for('static', filename='images/update_db.jpeg') }}" alt="update db logo">
+            <div class="card-body">
+                <p class="card-text">What if the data you need is not there? Click the button and update the database with the latest data.</p>
+                <a href="{{ url_for('views_v1.update_db') }}" class="btn btn-primary full-width">Go to update db!</a>
+            </div>
+        </div>
+        <div class="card col-sm">
+            <img class="card-img-top fifty-img center-item" src="{{ url_for('static', filename='images/swagger.png') }}"
+                 alt="swagger logo">
+            <div class="card-body">
+                <p class="card-text">You don't like all of this css? Try the dark side of the api with the SwaggerUI interface.</p>
+                <a href="{{ url_for('swagger_ui.show') }}" class="btn btn-primary full-width">Go to SwaggerUI!</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

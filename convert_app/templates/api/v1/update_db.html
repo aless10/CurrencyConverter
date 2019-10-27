@@ -1,7 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form method="get" action="{{ url_for('api_v1.update_db') }}">
-    <input type="submit" class="btn btn-info" value="Update Db!">
-  </form>
+<h3>Update Db</h3>
+<div class="row">
+    <div class="col-sm-8">
+        <p>To update the database with the latest data, just hit the <strong>Update Db!</strong> button.</p>
+        <form id="update-db" method="get">
+            <input type="submit" class="btn btn-primary" value="Update Db!">
+        </form>
+        <div id="status-response" style="margin-top: 10px; display: none;">
+            <h4>Response:</h4>
+            <code id="code-response" class="javascript">
+            </code>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <img class="card-img-top fifty-img center-item" src="{{ url_for('static', filename='images/update_db.jpeg') }}"
+             alt="Card image cap">
+    </div>
+
+</div>
 {% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+$(document).on('submit', '#update-db', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'GET',
+        url: '{{ url_for('api_v1.update_db') }}',
+        success: function(jsondata) {
+            let jsonString = JSON.stringify(jsondata);
+            $("#code-response").html(jsonString);
+            $("#status-response").show();
+        }});
+      });
+
+
+</script>
+
+{% endblock %}
+
+action="{{ url_for('api_v1.update_db') }}"

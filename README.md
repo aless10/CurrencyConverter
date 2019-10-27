@@ -29,7 +29,6 @@ There are three endpoint that responds:
     /api/update-db
     
 
-
 ## How to run the application
 
 ### With Docker
@@ -45,6 +44,7 @@ We have two images:
     - redis: we use the redis server as a cache
     - mongo_db: the database where the exchange rates are stored
     - convert_app: the application
+    - webserver: nginx webserver for the application
     
 You can run the application within the container ``convert_app`` by running:
 
@@ -89,12 +89,13 @@ There are a bunch of env variables to set:
     REDIS_PORT_BIND=redis port
     USE_REDIS_CACHE=true if you want to use redis as a cache. false otherwise
     DATABASE_CONNECTION=connection string to connect the db (mongodb:///127.0.0.1:21112)
+    DATA_SOURCE_URL=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml
 
-To run the application, you can run the command
+To run the application in dev mode, you can run the command
 ```bash
-$ ./local_run/run_convert_app.sh
+$ python app.py
 ```
-This will run gunicorn who serves the application. The default address is 0.0.0.0:5000.
+This will run the flask development server at port 5000.
 
 
 ### Tests

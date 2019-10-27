@@ -1,5 +1,4 @@
-from lxml import etree
-from lxml.etree import Element
+from xml.etree import ElementTree
 import requests
 from requests import RequestException
 
@@ -30,11 +29,11 @@ def get_data_from_url(url: str) -> str:
     return r.content
 
 
-def get_xml_from_string(xml_str: str) -> Element:
-    return etree.fromstring(xml_str)
+def get_xml_from_string(xml_str: str) -> ElementTree:
+    return ElementTree.fromstring(xml_str)
 
 
-def serialize_from_xml_element(xml_element: Element) -> list:
+def serialize_from_xml_element(xml_element: ElementTree) -> list:
     r = []
     for item in xml_element:
         for sub_item in item:

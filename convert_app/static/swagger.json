@@ -27,7 +27,7 @@
             "name": "amount",
             "in": "query",
             "required": true,
-            "description": "Amount to convert",
+            "description": "The amount to convert",
             "type": "number"
           },
           {

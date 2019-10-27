@@ -1,7 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form method="get" action="{{ url_for('api_v1.get_status') }}">
-    <input type="submit" class="btn btn-info" value="Get Status!">
-  </form>
+<h3>Get Status</h3>
+<div class="row">
+
+<div class="col-sm-8">
+
+
+<p>If you want to know the status of the application, just hit the <strong>Get Status!</strong> button.</p>
+<form id="get-status" method="get">
+    <input type="submit" class="btn btn-primary" value="Get Status!">
+</form>
+
+<div id="status-response" style="margin-top: 10px; display: none;">
+    <h4>Response:</h4>
+    <code id="code-response" class="javascript">
+    </code>
+</div>
+    </div>
+     <div class="col-sm-4">
+        <img class="card-img-top fifty-img center-item" src="{{ url_for('static', filename='images/status.png') }}"
+             alt="Card image cap">
+    </div>
+    </div>
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+
+$(document).on('submit', '#get-status', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'GET',
+        url: '{{ url_for("api_v1.get_status") }}',
+        success: function(jsondata) {
+            let jsonString = JSON.stringify(jsondata);
+            $("#code-response").html(jsonString);
+            $("#status-response").show();
+        }});
+      });
+
+</script>
+
 {% endblock %}

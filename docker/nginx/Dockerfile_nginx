@@ -1,0 +1,8 @@
+FROM nginx:latest
+
+COPY ./docker/nginx/sites-available /etc/nginx/conf.d/sites-available
+COPY ./docker/nginx/sites-enabled /etc/nginx/conf.d/sites-enabled
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+RUN ln -sfn /etc/nginx/conf.d/sites-available/convert_app.conf /etc/nginx/conf.d/sites-enabled
